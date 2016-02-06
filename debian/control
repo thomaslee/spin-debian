@@ -1,0 +1,24 @@
+Source: spin
+Section: devel
+Priority: optional
+Maintainer: Tom Lee <debian@tomlee.co>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Homepage: http://spinroot.com
+Vcs-Git: git://github.com/thomaslee/spin-debian
+Vcs-Browser: https://github.com/thomaslee/spin-debian
+
+Package: spin
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: The Spin software verification tool.
+ Spin is a popular open-source software verification tool, used by thousands
+ of people worldwide. The tool can be used for the formal verification of
+ multi-threaded software applications. The tool was developed at Bell Labs
+ in the Unix group of the Computing Sciences Research Center, starting in 1980.
+ .
+ The software has been available freely since 1991, and continues to evolve to
+ keep pace with new developments.
+ .
+ In April 2002 the tool was awarded the ACM System Software Award.
+

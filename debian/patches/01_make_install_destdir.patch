@@ -1,0 +1,21 @@
+--- a/Src6.4.5/makefile
++++ b/Src6.4.5/makefile
+@@ -28,6 +28,9 @@
+ YACC=yacc		# on Solaris: /usr/ccs/bin/yacc
+ YFLAGS=-v -d 		# creates y.output and y.tab.h
+ 
++DESTDIR?=/
++INSTALL?=cp
++
+ SPIN_OS= spinlex.o sym.o vars.o main.o msc_tcl.o \
+ 	mesg.o flow.o sched.o run.o pangen1.o pangen2.o \
+ 	pangen3.o pangen4.o pangen5.o guided.o dstep.o \
+@@ -40,7 +43,7 @@
+ 	$(CC) $(CFLAGS) -o spin spin.o $(SPIN_OS) $(TL_OS)
+ 
+ install: spin
+-	cp spin /usr/local/bin
++	$(INSTALL) spin $(DESTDIR)/usr/bin/spin
+ 
+ spin.o:	spin.y
+ 	$(YACC) $(YFLAGS) spin.y

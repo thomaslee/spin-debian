@@ -1,0 +1,13 @@
+/.pc
+/Src6.4.5/spin
+*.o
+y.output
+y.tab.h
+/debian/debhelper-build-stamp
+/debian/spin.debhelper.log
+*.swp
+/debian/.debhelper
+/debian/files
+/debian/spin.substvars
+/debian/spin
+
