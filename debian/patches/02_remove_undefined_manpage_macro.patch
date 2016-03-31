@@ -1,0 +1,28 @@
+--- a/Man/spin.1
++++ b/Man/spin.1
+@@ -4,7 +4,6 @@
+ .\" On CYGWIN move this page to c:/cygwin/usr/man/man1/spin.1
+ .\"
+ .TH SPIN 1
+-.CT 1 comm_mach protocol
+ .SH NAME
+ .br
+  Spin \(mi verification of multithreaded systems
+@@ -94,7 +93,7 @@
+ .br
+ This option reads a formula in LTL syntax from the second argument
+ and translates it into Promela syntax (a never claim, qhich is Promela's
+-equivalent of a B\(u"chi Automaton).
++equivalent of a Büchi Automaton).
+ The LTL operators are written: [] (always), <> (eventually),
+ and U (strong until).  There is no X (next) operator, to secure
+ compatibility with the partial order reduction rules that are
+@@ -344,7 +343,7 @@
+ .br
+ .in +4
+ .br
+-G.J. Holzmann, \f2The Spin Model Checker \(um Primer and Reference Manual\f1,
++G.J. Holzmann, \f2The Spin Model Checker: Primer and Reference Manual\f1,
+ Addison-Wesley, Reading, Mass., 2004.
+ .br
+ --, `The model checker \*Z,'

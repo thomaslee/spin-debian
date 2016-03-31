@@ -1,17 +1,45 @@
 --- a/Src6.4.5/makefile
 +++ b/Src6.4.5/makefile
-@@ -28,6 +28,9 @@
- YACC=yacc		# on Solaris: /usr/ccs/bin/yacc
- YFLAGS=-v -d 		# creates y.output and y.tab.h
+@@ -7,8 +7,8 @@
+ # see also ./make_pc for a simpler script not requiring make
+ # for 32-bit compilation, use ./make32
  
+-CC=gcc
+-CFLAGS=-O2 -DNXT	# on some systems add: -I/usr/include
++CC?=gcc
++CFLAGS?=-O2 -DNXT	# on some systems add: -I/usr/include
+ 			# on a PC:    add -DPC
+ 			# on Solaris: add -DSOLARIS
+ 			# on a Mac:   add -DMAC
+@@ -17,7 +17,7 @@
+ # CFLAGS=-pg -g -DNXT
+ 
+ # for a more picky compilation use gcc-4 and add:
+-PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
++CFLAGS+=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
+ 	-fno-builtin -W -Wshadow -Wpointer-arith \
+ 	-Wcast-qual -Winline -Wall
+ 
+@@ -25,8 +25,11 @@
+ 			# on OS2:         spin -Picc -E/Pd+ -E/Q+
+ 			# for Visual C++: spin -PCL  -E/E
+ 
+-YACC=yacc		# on Solaris: /usr/ccs/bin/yacc
+-YFLAGS=-v -d 		# creates y.output and y.tab.h
++YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
++YFLAGS?=-v -d 		# creates y.output and y.tab.h
++
 +DESTDIR?=/
 +INSTALL?=cp
-+
+ 
  SPIN_OS= spinlex.o sym.o vars.o main.o msc_tcl.o \
  	mesg.o flow.o sched.o run.o pangen1.o pangen2.o \
- 	pangen3.o pangen4.o pangen5.o guided.o dstep.o \
-@@ -40,7 +43,7 @@
- 	$(CC) $(CFLAGS) -o spin spin.o $(SPIN_OS) $(TL_OS)
+@@ -37,10 +40,10 @@
+ 	tl_mem.o tl_rewrt.o tl_cache.o
+ 
+ spin:	$(SPIN_OS) $(TL_OS) spin.o
+-	$(CC) $(CFLAGS) -o spin spin.o $(SPIN_OS) $(TL_OS)
++	$(CC) $(CFLAGS) -o spin spin.o $(LDFLAGS) $(SPIN_OS) $(TL_OS)
  
  install: spin
 -	cp spin /usr/local/bin
