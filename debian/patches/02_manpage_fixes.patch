@@ -1,3 +1,13 @@
+Description: Manpage fixes.
+ The manpage included in the upstream package has various quirks that prevent
+ the package from building properly (unknown macros, escape sequences that
+ can be replaced by UTF-8 characters, etc.). This patch makes some minimal
+ changes to work around the build failures.
+Author: Tom Lee <debian@tomlee.co>
+Forwarded: no
+Last-Update: 2016-03-30
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/Man/spin.1
 +++ b/Man/spin.1
 @@ -4,7 +4,6 @@

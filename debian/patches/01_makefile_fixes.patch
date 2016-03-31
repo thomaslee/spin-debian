@@ -1,3 +1,12 @@
+Description: Makefile fixes
+ The upstream Makefile is extremely conservative, presumably to support
+ certain esoteric operating systems and architectures. This patch makes
+ some minor edits to permit the package to play nice with debhelper et al.
+Author: Tom Lee <debian@tomlee.co>
+Forwarded: no
+Last-Update: 2016-03-30
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/Src6.4.5/makefile
 +++ b/Src6.4.5/makefile
 @@ -7,8 +7,8 @@
