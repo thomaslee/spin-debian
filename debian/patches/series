@@ -1,2 +1,2 @@
-01_make_install_destdir.patch
-02_remove_undefined_manpage_macro.patch
+01_makefile_fixes.patch
+02_manpage_fixes.patch
