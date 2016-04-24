@@ -11,6 +11,8 @@ include /usr/share/dpkg/buildflags.mk
 
 export DEB_BUILD_OPTIONS=noddebs
 
+SPIN_SRCDIR=Src6.4.5
+
 # see ENVIRONMENT in dpkg-buildflags(1)
 # package maintainers to append CFLAGS
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
@@ -28,14 +30,14 @@ export DEB_BUILD_OPTIONS=noddebs
 #	dh_auto_configure -- #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_configure:
-	dh_auto_configure --sourcedirectory=Src6.4.5
+	dh_auto_configure --sourcedirectory=$(SPIN_SRCDIR)
 
 override_dh_auto_build:
-	dh_auto_build --sourcedirectory=Src6.4.5
+	dh_auto_build --sourcedirectory=$(SPIN_SRCDIR)
 
 override_dh_auto_clean:
-	dh_auto_clean --sourcedirectory=Src6.4.5
+	dh_auto_clean --sourcedirectory=$(SPIN_SRCDIR)
 
 override_dh_auto_install:
-	dh_auto_install --sourcedirectory=Src6.4.5 -- INSTALL="install -D"
+	dh_auto_install --sourcedirectory=$(SPIN_SRCDIR) -- INSTALL="install -D"
 
