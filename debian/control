@@ -22,3 +22,19 @@ Description: formal software verification tool
  .
  In April 2002 the tool was awarded the ACM System Software Award.
 
+Package: spin-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: spin (= ${binary:Version}), ${misc:Depends}
+Description: formal software verification tool (debug symbols)
+ Spin is a popular open-source software verification tool, used by thousands
+ of people worldwide. The tool can be used for the formal verification of
+ multi-threaded software applications. The tool was developed at Bell Labs
+ in the Unix group of the Computing Sciences Research Center, starting in 1980.
+ .
+ The software has been available freely since 1991, and continues to evolve to
+ keep pace with new developments.
+ .
+ In April 2002 the tool was awarded the ACM System Software Award.
+

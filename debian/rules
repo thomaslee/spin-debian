@@ -39,3 +39,6 @@ override_dh_auto_clean:
 override_dh_auto_install:
 	dh_auto_install --sourcedirectory=$(SPIN_SRCDIR) -- INSTALL="install -D"
 
+override_dh_strip:
+	dh_strip --dbg-package=spin-dbg
+
