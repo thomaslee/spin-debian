@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Tom Lee <debian@tomlee.co>
 Build-Depends: debhelper (>=9), bison
-Standards-Version: 3.9.7
+Standards-Version: 3.9.8
 Homepage: http://spinroot.com
 Vcs-Git: git://github.com/thomaslee/spin-debian
 Vcs-Browser: https://github.com/thomaslee/spin-debian
