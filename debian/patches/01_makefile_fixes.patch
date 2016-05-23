@@ -16,7 +16,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 -CC=gcc
 -CFLAGS=-O2 -DNXT	# on some systems add: -I/usr/include
 +CC?=gcc
-+CFLAGS?=-O2 -DNXT	# on some systems add: -I/usr/include
++CFLAGS+=-O2 -DNXT	# on some systems add: -I/usr/include
  			# on a PC:    add -DPC
  			# on Solaris: add -DSOLARIS
  			# on a Mac:   add -DMAC
