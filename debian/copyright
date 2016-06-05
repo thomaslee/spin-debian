@@ -5,6 +5,11 @@ Source: http://spinroot.com/spin/Src/index.html
 Files: *
 Copyright: 1989-2016 Gerard J. Holzmann
 License: BSD-3-clause
+Comment: See Src6.4.5/LICENSE for more information about the provenance
+ and licensing of these files.  The upstream author has confirmed via
+ private email that non-source files distributed via the upstream tarball,
+ e.g. the files in ./Examples/*, are also redistributable via the
+ BSD-3-clause license.
 
 Files: debian/*
 Copyright: 2016 Tom Lee <debian@tomlee.co>
