@@ -1076,7 +1076,7 @@ samecase:			if (buzzed != 0)
 	}
 	if (columns == 2)
 	{	extern void putprelude(void);
-		if (xspin || verbose&(1|4|8|16|32))
+		if (xspin || (verbose & (1|4|8|16|32)))
 		{	printf("spin: -c precludes all flags except -t\n");
 			alldone(1);
 		}

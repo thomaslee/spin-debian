@@ -1,13 +1,14 @@
 #!/usr/bin/make -f
-#export DH_VERBOSE = 1
+export DH_VERBOSE = 1
 
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
-	dh $@ --sourcedirectory=Src6.4.5
+	dh $@ --sourcedirectory=Src6.4.6
 
 
 override_dh_auto_install:
-	dh_auto_install -- INSTALL="install -D"
-
+	dh_auto_install
+	mkdir -p $(CURDIR)/debian/spin/usr/bin
+	mv $(CURDIR)/debian/spin/spin $(CURDIR)/debian/spin/usr/bin/spin

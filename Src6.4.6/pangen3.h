@@ -681,23 +681,23 @@ static const char *Code0[] = {
 static const char *R0[] = {
 	"	Maxbody = max(Maxbody, ((int) sizeof(P%d)));",
 	"	reached[%d] = reached%d;",
-	"	accpstate[%d] = (uchar *) emalloc(nstates%d);",
-	"	progstate[%d] = (uchar *) emalloc(nstates%d);",
-	"	loopstate%d = loopstate[%d] = (uchar *) emalloc(nstates%d);",
-	"	stopstate[%d] = (uchar *) emalloc(nstates%d);",
-	"	visstate[%d] = (uchar *) emalloc(nstates%d);",
-	"	mapstate[%d] = (short *) emalloc(nstates%d * sizeof(short));",
-	"	stopstate[%d][endstate%d] = 1;",
+	"	accpstate[%d] = (uchar *) emalloc(_nstates%d);",
+	"	progstate[%d] = (uchar *) emalloc(_nstates%d);",
+	"	loopstate%d = loopstate[%d] = (uchar *) emalloc(_nstates%d);",
+	"	stopstate[%d] = (uchar *) emalloc(_nstates%d);",
+	"	visstate[%d] = (uchar *) emalloc(_nstates%d);",
+	"	mapstate[%d] = (short *) emalloc(_nstates%d * sizeof(short));",
+	"	stopstate[%d][_endstate%d] = 1;",
 	0,
 };
 
 static const char *R00[] = {
-	"	NrStates[%d] = nstates%d;",
+	"	NrStates[%d] = _nstates%d;",
 	0,
 };
 
 static const char *R0a[] = {
-	"	retrans(%d, nstates%d, start%d, src_ln%d, reached%d, loopstate%d);",
+	"	retrans(%d, _nstates%d, _start%d, src_ln%d, reached%d, loopstate%d);",
 	0,
 };
 
@@ -760,7 +760,7 @@ static const char *R3[] = {
 	0,
 };
 static const char *R4[] = {
-	"	r_ck(reached%d, nstates%d, %d, src_ln%d, src_file%d);",
+	"	r_ck(reached%d, _nstates%d, %d, src_ln%d, src_file%d);",
 	0,
 };
 static const char *R5[] = {

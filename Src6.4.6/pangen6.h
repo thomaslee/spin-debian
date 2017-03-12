@@ -146,7 +146,7 @@ static const char *Code2c[] = { /* multi-core option - Spin 5.0 and later */
 	"#endif",
 	"",
 	"#ifdef SET_SEG_SIZE",
-	"	/* no longer usefule -- being recomputed for local heap size anyway */",
+	"	/* no longer useful -- being recomputed for local heap size anyway */",
 	"	double SEG_SIZE = (((double) SET_SEG_SIZE) * 1048576.);",
 	"#else",
 	"	double SEG_SIZE = (1048576.*1024.);	/* 1GB default shared memory pool segments */",

@@ -82,9 +82,10 @@ Symbol	*DoDump(Node *);
 
 extern char	*emalloc(size_t);	/* in main.c */
 
+extern unsigned int	hash(const char *);	/* in sym.c */
+
 int	anywhere(int, Node *, Node *);
 int	dump_cond(Node *, Node *, int);
-int	hash(char *);	/* in sym.c */
 int	isalnum_(int);	/* in spinlex.c */
 int	isequal(Node *, Node *);
 int	tl_Getchar(void);

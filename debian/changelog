@@ -1,3 +1,11 @@
+spin (6.4.6+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Adjust makefile patch for new upstream release.
+  * Update debian/watch file.
+
+ -- tony mancill <tmancill@debian.org>  Sat, 11 Mar 2017 16:05:16 -0800
+
 spin (6.4.5+dfsg-1) unstable; urgency=medium
 
   * Repack source to exclude iSpin

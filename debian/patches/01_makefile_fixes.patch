@@ -7,8 +7,8 @@ Forwarded: no
 Last-Update: 2016-03-30
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/Src6.4.5/makefile
-+++ b/Src6.4.5/makefile
+--- a/Src6.4.6/makefile
++++ b/Src6.4.6/makefile
 @@ -7,8 +7,8 @@
  # see also ./make_pc for a simpler script not requiring make
  # for 32-bit compilation, use ./make32
@@ -29,7 +29,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  	-fno-builtin -W -Wshadow -Wpointer-arith \
  	-Wcast-qual -Winline -Wall
  
-@@ -25,8 +25,11 @@
+@@ -25,8 +25,8 @@
  			# on OS2:         spin -Picc -E/Pd+ -E/Q+
  			# for Visual C++: spin -PCL  -E/E
  
@@ -37,13 +37,10 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 -YFLAGS=-v -d 		# creates y.output and y.tab.h
 +YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
 +YFLAGS?=-v -d 		# creates y.output and y.tab.h
-+
-+DESTDIR?=/
-+INSTALL?=cp
+ DESTDIR?=/usr/local/bin
+ INSTALL?=cp
  
- SPIN_OS= spinlex.o sym.o vars.o main.o msc_tcl.o \
- 	mesg.o flow.o sched.o run.o pangen1.o pangen2.o \
-@@ -37,10 +40,10 @@
+@@ -39,7 +39,7 @@
  	tl_mem.o tl_rewrt.o tl_cache.o
  
  spin:	$(SPIN_OS) $(TL_OS) spin.o
@@ -51,8 +48,4 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +	$(CC) $(CFLAGS) -o spin spin.o $(LDFLAGS) $(SPIN_OS) $(TL_OS)
  
  install: spin
--	cp spin /usr/local/bin
-+	$(INSTALL) spin $(DESTDIR)/usr/bin/spin
- 
- spin.o:	spin.y
- 	$(YACC) $(YFLAGS) spin.y
+ 	$(INSTALL) spin $(DESTDIR)

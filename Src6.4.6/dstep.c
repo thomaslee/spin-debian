@@ -388,7 +388,7 @@ putCode(FILE *fd, Element *f, Element *last, Element *next, int isguard)
 				break;
 			}
 			i = e->nxt?e->nxt->Seqno:0;
-			if (e->nxt && e->nxt->status & DONE2 && !LastGoto)
+			if (e->nxt && (e->nxt->status & DONE2) && !LastGoto)
 			{	fprintf(fd, "\t\tgoto S_%.3d_0; ", i);
 				fprintf(fd, "/* ';' */\n");
 				Dested(i);
