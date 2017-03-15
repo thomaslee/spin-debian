@@ -1544,7 +1544,7 @@ again:
 		{	c = check_name(yytext);
 
 #ifdef EXPAND_SELECT
-			if (c == SELECT)
+			if (c == SELECT && Inlining < 0)
 			{	char name[64], from[32], upto[32];
 				int i, a, b;
 				new_select();

@@ -234,7 +234,7 @@ eval_sub(Element *e)
 		} else
 		{	SeqList *x;
 			if (!(e->status & (D_ATOM))
-			&&  e->esc && verbose&32)
+			&&  e->esc && (verbose&32))
 			{	printf("Stmnt [");
 				comment(stdout, e->n, 0);
 				printf("] has escape(s): ");

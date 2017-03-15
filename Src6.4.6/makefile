@@ -1,4 +1,4 @@
-# SPIN - Verification Software - Version 6.4 - January 2016
+# SPIN - Verification Software - Version 6.4 - December 2016
 #
 # This file is part of the public release of Spin. It is subject to the
 # terms in the LICENSE file that is included in this source directory.
@@ -27,6 +27,8 @@ PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
 
 YACC=yacc		# on Solaris: /usr/ccs/bin/yacc
 YFLAGS=-v -d 		# creates y.output and y.tab.h
+DESTDIR?=/usr/local/bin
+INSTALL?=cp
 
 SPIN_OS= spinlex.o sym.o vars.o main.o msc_tcl.o \
 	mesg.o flow.o sched.o run.o pangen1.o pangen2.o \
@@ -40,7 +42,7 @@ spin:	$(SPIN_OS) $(TL_OS) spin.o
 	$(CC) $(CFLAGS) -o spin spin.o $(SPIN_OS) $(TL_OS)
 
 install: spin
-	cp spin /usr/local/bin
+	$(INSTALL) spin $(DESTDIR)
 
 spin.o:	spin.y
 	$(YACC) $(YFLAGS) spin.y

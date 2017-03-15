@@ -1035,9 +1035,9 @@ tc_predef_np(void)
 {
 	fprintf(th, "#define _NP_	%d\n", nrRdy);	/* 1+ highest proctype nr */
 
-	fprintf(th, "#define nstates%d	3 /* np_ */\n", nrRdy);
-	fprintf(th, "#define endstate%d	2 /* np_ */\n\n", nrRdy);
-	fprintf(th, "#define start%d	0 /* np_ */\n", nrRdy);
+	fprintf(th, "#define _nstates%d	3 /* np_ */\n", nrRdy);
+	fprintf(th, "#define _endstate%d	2 /* np_ */\n\n", nrRdy);
+	fprintf(th, "#define _start%d	0 /* np_ */\n", nrRdy);
 
 	fprintf(tc, "\tcase %d:	/* np_ */\n", nrRdy);
 	if (separate == 1)
@@ -1119,7 +1119,7 @@ put_pinit(ProcList *P)
 		return;
 
 	ini = huntele(e, e->status, -1)->seqno;
-	fprintf(th, "#define start%d	%d\n", i, ini);
+	fprintf(th, "#define _start%d	%d\n", i, ini);
 	if (i == eventmapnr)
 	fprintf(th, "#define start_event	%d\n", ini);
 

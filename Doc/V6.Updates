@@ -12,7 +12,7 @@ The update history since 1989:
  Version 4: Jan. 2003 - Oct. 2007 28.2K lines: embedded c-code, bfs
  Version 5: Oct. 2007 - Dec. 2010 32.8K lines: multi-core & swarm support
  Version 6: Dec. 2010 -           36.8K lines: inline ltl formula, parallel bfs
- Version 6.4.4:  2015 -           39.6K lines
+ Version 6.4.6:  2016 -           39.6K lines
 
 ==== Version 6.0.0 - 5 December 2010 ====
 
@@ -814,7 +814,7 @@ Smaller changes:
 ==== Version 6.4.5 - 1 January 2016 ====
 
 - The first version of Spin that is released under a standard
-  BSd 3-Clause open source license. This was possible thanks to
+  BSD 3-Clause open source license. This was possible thanks to
   the transfer of the copyright on all Spin sources from
   Alcatel-Lucent (the successor to AT&T in ownership of Bell Labs),
   to me on 30 December 2015. This release also comes 25 years
@@ -828,3 +828,25 @@ Smaller changes:
   be flagged as incorrect, and the correction of an incorrectly
   bracketed expression in function spin_cond_wait, which is
   used by the modex model extractor.
+
+==== Version 6.4.6 - 2 December 2016 ====
+
+- fixed bug in treatment of select() statement, when used inside
+  and inline definition.
+- made it an error to use 'run' to initialize a variable inside
+  a declaration.
+- small fixes in d_step.c, run.c, pangen2,c, and main.c (missing
+  parentheses around subexpressions with a binary operators).
+- small improvements in the makefile
+- fix in mesg.c to allow recv poll operators on rhs of
+  assignments (erroneously flagged before as a side-effect)
+- prefixed some more generated variables in pan.c to
+  avoid name-clashes (_nstates, _endstateN, _startN)
+- prevented possible compiler warnings on definition of
+  a recently added function spin_join()
+- added new function mutex_destroy to support modex
+  conversions from C to Promela
+- fixed typo in BFS_PAR print statement (Seperate->Separate)
+- fixed flaw in generation of BFS_PAR code, preventing
+  compiler warnings
+- made hash function inside sym.c return an unsigned int

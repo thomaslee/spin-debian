@@ -456,6 +456,9 @@ ivar    : vardcl           	{ $$ = $1;
 				  {	has_ini = 1; /* possibly global */
 				  }
 				  trackvar($1, $3);
+				  if (any_oper($3, RUN))
+				  {	fatal("cannot use 'run' in var init, saw", (char *) 0);
+				  }
 				  nochan_manip($1, $3, 0);
 				  no_internals($1);
 				  if (!initialization_ok)
@@ -500,7 +503,7 @@ vardcl  : NAME  		{ $1->sym->nel = 1; $$ = $1; }
 	| NAME '[' NAME ']'	{	/* make an exception for an initialized scalars */
 					$$ = nn(ZN, CONST, ZN, ZN);
 					fprintf(stderr, "spin: %s:%d, warning: '%s' in array bound ",
-						$1->fn->name, $1->ln, $1->sym->name);
+						$1->fn->name, $1->ln, $3->sym->name);
 					if ($3->sym->ini->val > 0)
 					{	fprintf(stderr, "evaluated as %d\n", $3->sym->ini->val);
 						$$->val = $3->sym->ini->val;

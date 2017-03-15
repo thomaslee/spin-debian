@@ -682,7 +682,8 @@ nochan_manip(Lextok *p, Lextok *n, int d)
 	/* ok on the rhs of an assignment: */
 	if (!n || n->ntyp == LEN || n->ntyp == RUN
 	||  n->ntyp == FULL  || n->ntyp == NFULL
-	||  n->ntyp == EMPTY || n->ntyp == NEMPTY)
+	||  n->ntyp == EMPTY || n->ntyp == NEMPTY
+	||  n->ntyp == 'R')
 		return;
 
 	if (n->sym && n->sym->type == CHAN)

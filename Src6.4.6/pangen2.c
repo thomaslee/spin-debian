@@ -439,7 +439,7 @@ doless:
 	if (eventmap)
 	{	eventmapnr = fproc(eventmap);
 		fprintf(th, "#define EVENT_TRACE	%d\n",	eventmapnr);
-		fprintf(th, "#define endevent	endstate%d\n",	eventmapnr);
+		fprintf(th, "#define endevent	_endstate%d\n",	eventmapnr);
 		if (eventmap[2] == 'o')	/* ":notrace:" */
 		fprintf(th, "#define NEGATED_TRACE	1\n");
 	}
@@ -960,15 +960,15 @@ putproc(ProcList *p)
 	&&  separate == 1)
 	{	fprintf(th, "extern uchar reached%d[];\n", Pid);
 #if 0
-		fprintf(th, "extern short nstates%d;\n", Pid);
+		fprintf(th, "extern short _nstates%d;\n", Pid);
 #else
-		fprintf(th, "\n#define nstates%d	%d\t/* %s */\n",
+		fprintf(th, "\n#define _nstates%d	%d\t/* %s */\n",
 			Pid, p->s->maxel, p->n->name);
 #endif
 		fprintf(th, "extern short src_ln%d[];\n", Pid);
 		fprintf(th, "extern uchar *loopstate%d;\n", Pid);
 		fprintf(th, "extern S_F_MAP src_file%d[];\n", Pid);
-		fprintf(th, "#define endstate%d	%d\n",
+		fprintf(th, "#define _endstate%d	%d\n",
 			Pid, p->s->last?p->s->last->seqno:0);
 		return;
 	}
@@ -981,7 +981,7 @@ putproc(ProcList *p)
 
 	AllGlobal = (p->prov)?1:0;	/* process has provided clause */
 
-	fprintf(th, "\n#define nstates%d	%d\t/* %s */\n",
+	fprintf(th, "\n#define _nstates%d	%d\t/* %s */\n",
 		Pid, p->s->maxel, p->n->name);
 /* new */
 	fprintf(th, "#define minseq%d	%d\n", Pid, find_min(p->s));
@@ -990,9 +990,9 @@ putproc(ProcList *p)
 /* end */
 
 	if (Pid == eventmapnr)
-	fprintf(th, "#define nstates_event	nstates%d\n", Pid);
+	fprintf(th, "#define nstates_event	_nstates%d\n", Pid);
 
-	fprintf(th, "#define endstate%d	%d\n", Pid, p->s->last?p->s->last->seqno:0);
+	fprintf(th, "#define _endstate%d	%d\n", Pid, p->s->last?p->s->last->seqno:0);
 
 	if (p->b == N_CLAIM || p->b == E_TRACE || p->b == N_TRACE)
 	{	fprintf(tm, "\n		 /* CLAIM %s */\n", p->n->name);
@@ -1869,8 +1869,8 @@ put_el(Element *e, int Tt0, int Tt1)
 	} else
 		a = 0;
 	if (g
-	&&  (g->status&CHECK2	/* entering remotely ref'd state */
-	||   e->status&CHECK2))	/* leaving  remotely ref'd state */
+	&&  ((g->status&CHECK2)		/* entering remotely ref'd state */
+	||   (e->status&CHECK2)))	/* leaving  remotely ref'd state */
 		e->status |= I_GLOB;
 
 	/* don't remove dead edges in here, to preserve structure of fsm */
@@ -2794,16 +2794,20 @@ putstmnt(FILE *fd, Lextok *now, int m)
 			fprintf(fd, ";\n\t\t");
 			/* no variables modified */
 			if (j == 0 && now->val == 0)
-			{	fprintf(fd, "if (q_flds[((Q0 *)qptr(");
+			{	fprintf(fd, "\n#ifndef BFS_PAR\n\t\t");
+				/* q_flds values are not shared among cores */
+				fprintf(fd, "if (q_flds[((Q0 *)qptr(");
 				putname(fd, "", now->lft, m, "-1))->_t]");
-				fprintf(fd, " != %d)\n\t", i);
-				fprintf(fd, "\t\tUerror(\"wrong nr of msg fields in rcv\");\n\t\t");
+				fprintf(fd, " != %d)\n\t\t\t", i);
+				fprintf(fd, "Uerror(\"wrong nr of msg fields in rcv\");\n");
+				fprintf(fd, "#endif\n\t\t");
 			}
 
 			for (v = now->rgt; v; v = v->rgt)
-				if ((v->lft->ntyp != CONST
+			{	if ((v->lft->ntyp != CONST
 				&&   v->lft->ntyp != EVAL))
-					jj++;	/* nr of vars needing bup */
+				{	jj++;	/* nr of vars needing bup */
+			}	}
 
 			if (jj)
 			for (v = now->rgt, i = 0; v; v = v->rgt, i++)

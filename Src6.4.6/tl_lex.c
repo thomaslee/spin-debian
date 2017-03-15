@@ -242,7 +242,7 @@ tl_lex(void)
 Symbol *
 tl_lookup(char *s)
 {	Symbol *sp;
-	int h = hash(s);
+	unsigned int h = hash(s);
 
 	for (sp = symtab[h]; sp; sp = sp->next)
 		if (strcmp(sp->name, s) == 0)

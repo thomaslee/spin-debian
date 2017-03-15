@@ -137,7 +137,7 @@ static const char *pan_par[] = {	/* generates pan.p */
 	"",
 	"#ifdef MA",
 	"	#error cannot combine -DMA with -DBFS_PAR",
-	"	/* would require us to parallize g_store */",
+	"	/* would require us to parallelize g_store */",
 	"#endif",
 	"#ifdef BCS",
 	"	#error cannot combine -DBCS with -DBFS_PAR",

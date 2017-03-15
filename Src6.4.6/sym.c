@@ -33,12 +33,12 @@ samename(Symbol *a, Symbol *b)
 	return !strcmp(a->name, b->name);
 }
 
-int
-hash(char *s)
-{	int h=0;
+unsigned int
+hash(const char *s)
+{	unsigned int h = 0;
 
 	while (*s)
-	{	h += *s++;
+	{	h += (unsigned int) *s++;
 		h <<= 1;
 		if (h&(Nhash+1))
 			h |= 1;
@@ -84,7 +84,7 @@ disambiguate(void)
 Symbol *
 lookup(char *s)
 {	Symbol *sp; Ordered *no;
-	int h = hash(s);
+	unsigned int h = hash(s);
 
 	if (old_scope_rules)
 	{	/* same scope - global refering to global or local to local */
