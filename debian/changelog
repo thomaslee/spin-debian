@@ -1,3 +1,9 @@
+spin (6.4.5+dfsg-3) unstable; urgency=medium
+
+  * Add Replaces: for staden (<< 2.0.0+b11) (Closes: #861021)
+
+ -- tony mancill <tmancill@debian.org>  Tue, 25 Apr 2017 20:22:12 -0700
+
 spin (6.4.5+dfsg-2) unstable; urgency=medium
 
   * Declare Breaks with staden (<< 2.0.0+b11) (Closes: #861021)
