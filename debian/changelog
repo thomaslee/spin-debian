@@ -6,6 +6,18 @@ spin (6.4.6+dfsg-1) experimental; urgency=medium
 
  -- tony mancill <tmancill@debian.org>  Sat, 11 Mar 2017 16:05:16 -0800
 
+spin (6.4.5+dfsg-3) unstable; urgency=medium
+
+  * Add Replaces: for staden (<< 2.0.0+b11) (Closes: #861021)
+
+ -- tony mancill <tmancill@debian.org>  Tue, 25 Apr 2017 20:22:12 -0700
+
+spin (6.4.5+dfsg-2) unstable; urgency=medium
+
+  * Declare Breaks with staden (<< 2.0.0+b11) (Closes: #861021)
+
+ -- tony mancill <tmancill@debian.org>  Mon, 24 Apr 2017 07:59:27 -0700
+
 spin (6.4.5+dfsg-1) unstable; urgency=medium
 
   * Repack source to exclude iSpin
