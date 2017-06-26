@@ -3,8 +3,8 @@ Section: devel
 Priority: optional
 Maintainer: Tom Lee <debian@tomlee.co>
 Uploaders: tony mancill <tmancill@debian.org>
-Build-Depends: debhelper (>=9), bison
-Standards-Version: 3.9.8
+Build-Depends: debhelper (>=10), bison
+Standards-Version: 4.0.0
 Homepage: http://spinroot.com
 Vcs-Git: git://github.com/thomaslee/spin-debian
 Vcs-Browser: https://github.com/thomaslee/spin-debian
@@ -12,6 +12,8 @@ Vcs-Browser: https://github.com/thomaslee/spin-debian
 Package: spin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: staden (<< 2.0.0+b11)
+Replaces: staden (<< 2.0.0+b11)
 Description: formal software verification tool
  Spin is a popular open-source software verification tool, used by thousands
  of people worldwide. The tool can be used for the formal verification of
