@@ -12,7 +12,7 @@ The update history since 1989:
  Version 4: Jan. 2003 - Oct. 2007 28.2K lines: embedded c-code, bfs
  Version 5: Oct. 2007 - Dec. 2010 32.8K lines: multi-core & swarm support
  Version 6: Dec. 2010 -           36.8K lines: inline ltl formula, parallel bfs
- Version 6.4.6:  2016 -           39.6K lines
+ Version 6.4.9:  2018 -           40.1K lines
 
 ==== Version 6.0.0 - 5 December 2010 ====
 
@@ -850,3 +850,57 @@ Smaller changes:
 - fixed flaw in generation of BFS_PAR code, preventing
   compiler warnings
 - made hash function inside sym.c return an unsigned int
+
+==== Version 6.4.7 - 19 August 2017 ====
+
+- fixed a bug in the parsing of for (...) statements if
+  initialized variable declarations appear in the body of the loop
+- optimization in interpreting the swarm option, by avoiding
+  unnecessary recompilations, plus other small fixes in the
+  generation of parameter values for -k and -w with swarms
+- added runtime option -W to suppress recompilation of pan if
+  the executable already exists
+- fixed bug in printing the value of a random seed at the end of
+  a randomized run
+- added compilation warning if both -DNP and -DNOCLAIM are used
+  (in that case -DNP is assumed to override -DNOCLAIM)
+- fixed a bug in the parsing of select (...) statements that could
+  cause unwarranted syntax errors when larger ranges are used
+- switched to executables for Windows PCs that do not require
+  a cygwin installation (using mingw32 and mingw64 bit compilations)
+
+==== Version 6.4.8 - 2 March 2018 ====
+
+- fixed bug in 6.4.7 that prevented spin -run from working correctly.
+- improved explanation of spin swarm options
+- added -noreduce option to work with -run (same as -DNOREDUCE)
+- added -dfspar option to work with -run (same as -DNCORE=4)
+- added -np option to work with -run (same as -DNP)
+- extended -biterate option to -biterateN,M (similar to -swarmN,M)
+- added -rhash option to work with -run (-DPERMUTED, enables random
+  selection of process scheduling randomization)
+- added -W option to work with -run, to prevent recompilation of ./pan
+- cleaned up makefile a bit
+- added support of named mtype declarations
+  (see new mtype manual page online); backward compatible with use of
+  unnamed mtypes as before
+- fixed small problems with -DNP is used and also erroneously -DNOCLAIM
+- improved error reporting, eliminated some more compiler warnings on pan.c
+
+==== Version 6.4.9 - 17 December 2018 ====
+
+- fixed bug where on replay of a trail with -l option the local variable
+  values were not included in the final state listings
+- on Windows systems, redirect error output from gcc test better
+- now correctly turning off statement merging when remote variables are used
+- changed internal variable name 'this' into '_this' to prevent name conflicts
+  when linking to C++ code
+- added warning that liveness checking with both -DMA and partial order
+  reduction enabled can lead to incompleteness
+- added compiler directive INIT_STATE for pan.c that calls a new routine
+  called init_state(now) in pangen3.h to perform the initializations.
+  this routine can now also be called from within embedded code, if needed.
+- other more cosmetic small changes to prevent compiler warnings
+- improved treatment of missing semi-colons slightly
+- corrected an (unlikely) initialization problem for local variables in inlines
+

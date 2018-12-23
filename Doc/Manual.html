@@ -439,9 +439,12 @@ braces with the keyword
 the user can indicate that the sequence is to be executed
 as one indivisible unit, non-interleaved with any other
 processes.
-It causes a run-time error if any statement, other than
+Atomicity can be lost if any statement, other than
 the first statement, blocks in an atomic sequence.
-This is how we can use atomic sequences to protect the
+It can be regained once the blocking statement becomes
+executable again.
+<p>
+This is and example of how we can use atomic sequences to protect the
 concurrent access to the global variable
 <tt>state</tt>
 in the earlier example.
@@ -2521,6 +2524,6 @@ Protocol Testing, Specification, Verification.
 </td>
 <td valign=top width=100 align=center></td>
 <td valign=top width=400 align=right>
-<font size="3"><b><tt>(Page Updated: 3 June 2007)</tt></font></b></td></tr>
+<font size="3"><b><tt>(Page Updated: 3 August 2017)</tt></font></b></td></tr>
 </table>
 </html>

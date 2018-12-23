@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <!-- saved from url=(0040)http://spinroot.com/spin/Man/README.html -->
-<HTML><HEAD><TITLE>Spin - Version 6.4 - December 2016</TITLE>
+<HTML><HEAD><TITLE>Spin - Version 6.4 - March 2018</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=windows-1252">
 <META content="MSHTML 6.00.2800.1276" name=GENERATOR></HEAD>
 <BODY bgColor=#ffffff>
@@ -22,8 +22,8 @@
 downloading and installing Spin and related software on Unix/Linux and Windows
 platforms. Refer to <A href="http://spinroot.com/spin/whatispin.html">Spin's
 homepage</A> for a general description of Spin, with pointers to <A
-href="http://spinroot.com/spin/Man/index.html">manual pages</A>, <A
-href="http://spinroot.com/spin/News/index.html">newsletters</A>.
+href="http://spinroot.com/spin/Man/index.html">manual pages</A>, tutorials,
+introductory papers, books, etc.
 <p>
 Spin is distributed freely in source form to encourage research in formal
 verification, and to help a support friendly and open exchange of algorithms,
@@ -41,16 +41,13 @@ to Gerard Holzmann, explicitly to enable a standard open source release
 under the BSD 3-Clause license. Starting with Spin Version 6.4.5 all Spin code,
 sources and executables, are now available under the BSD 3-Clause license.
 <p>
+Spin is also part of the stable release of Debian, and is starting to show up
+in newer Ubuntu releases (16.10+), so that you'll soon be able to install it with
+a standard <em>sudo apt-get install spin</em> command.
+<p>
 From the early development of the Plan9 Operating System, Spin has also been
-part of that system. This means that versions of the Spin source code can also
-be found in the Plan9 distributions. One branch of that code, for instance,
-is distributed also by UC Berkeley under a
-<a href="http://www.gnu.org/licenses/">GPLv2 license</a> (see
-<a href="http://akaros.cs.berkeley.edu/files/Plan9License">UCB</a>).
-(Although the sources in that version are still labeled under the older
-copyright from AT&T and Lucent Technologies.)
-The BSD version of Spin 6.4.5 and later is likely to find its way into
-newer distributions of the Plan9 code as well.
+part of that distribution and versions can be found, for instance, in the
+version distributed by UC Berkeley.
 </ul>
 <p>
 <HR>
@@ -62,7 +59,7 @@ in the
 <A href="http://spinroot.com/spin/Bin/index.html">Spin Binaries</A>.
 <p>
 All binaries have an extension that matches the Spin version number,
-such as <tt>spin644.exe</tt>. To install the binary, rename it to
+such as <tt>spin648.exe</tt>. To install the binary, rename it to
 <tt>spin.exe</tt> and copy it into your bin directory.
 <p>
 If you have machine type that is not available there, or if you are
@@ -84,8 +81,8 @@ below.
   <p></p>
   <LI><B>Macs</B> (Mac OS X): <BR>download the most recent .tar-file with sources,
   from the <A href="http://spinroot.com/spin/Src/index.html">Spin Distribution</A>,
-  and continue at <A href="http://spinroot.com/spin/Man/README.html#S1c"><FONT
-  color=red><B><TT>Step 2c</TT></B></FONT></A>.
+  and continue at <A href="http://spinroot.com/spin/Man/README.html#S1c">
+  <FONT color=red><B><TT>Step 2c</TT></B></FONT></A>.
   </LI></ul>
 <p>
 <HR>
@@ -388,29 +385,23 @@ The package can be downloaded from:
 </pre>
 
 <H3><TT>JSpin (optional)</TT></H3>
-jSpin, developed by <a href="http://stwww.weizmann.ac.il/g-cs/benari/">Moti Ben-Ari</a>, is
+jSpin, developed by <a href="http://www.weizmann.ac.il/sci-tea/benari">Moti Ben-Ari</a>, is
 an alternative to the iSpin GUI written in Java instead of Tcl/Tk. It is meant as a teaching aid. See:
 <pre>
-	<a href="http://stwww.weizmann.ac.il/g-cs/benari/jspin/">http://stwww.weizmann.ac.il/g-cs/benari/jspin/</a>
+	<a href="http://www.weizmann.ac.il/sci-tea/benari/software-and-learning-materials/jspin/">http://www.weizmann.ac.il/sci-tea/benari/software-and-learning-materials/jspin/</a>
 </pre>
 The jSpin tool can be configured for use on Linux and Macs, and can also
 run under Windows, with or without cygwin installed (e.g., with mingw).
 <br>
-The jSpin tool can be downloaded from GoogleCode:
+The jSpin tool can be downloaded from github:
 <pre>
-	<a href="http://code.google.com/p/jspin/">http://code.google.com/p/jspin/</a>
+	<a href="https://github.com/motib">https://github.com/motib</a>
 </pre>
 <H3><TT>Erigone (optional)</TT></H3>
-Erigone, also developed by <a href="http://stwww.weizmann.ac.il/g-cs/benari/">Moti Ben-Ari</a>, is
-a reimplementation of a subset of Spin, meant for educational use. Erigone is written in Ada 2005 instead of C.
-See:
-<pre>
-	<a href="http://stwww.weizmann.ac.il/g-cs/benari/erigone/">http://stwww.weizmann.ac.il/g-cs/benari/erigone/</a>
-</pre>
-Erigone can be downloaded from GoogleCode:
-<pre>
-	<a href="http://code.google.com/p/erigone/">http://code.google.com/p/erigone/</a>
-</pre>
+Erigone, also developed by Moti Ben-Ari, is a reimplementation of a subset of
+an early version of Spin, meant for educational use.
+Erigone is written in Ada 2005 instead of C. 
+Erigone can be downloaded from the github link above.
 
 <H3><TT>SpinJa (optional)</TT></H3>
 SpinJa is reimplementation of a subset of Spin in Java,
@@ -460,7 +451,7 @@ configurations for multiple verification runs:
 <TD align=left><A href="http://spinroot.com/spin/whatispin.html"><TT>Spin HomePage</TT></A></TD>
 <TD></TD>
 <TD align=right><FONT size=3><B><TT>
-(Page Last Updated: 2 December 2016)
+(Page Last Updated: 19 August 2017)
 </TT></B></FONT></TD>
 </TR></TBODY>
 </TABLE>
