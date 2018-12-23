@@ -27,19 +27,19 @@ the </i>Examples</i> directory of the <i>Spin</i> distribution.
 
 <h2><tt><font color=blue>0.</font> Installing Spin</tt></h2>
 We will assume you are using the most recent version of Spin, which
-at the time of writing is Version 6.4.0.
+at the time of writing is Version 6.4.8.
 If Spin is not yet installed on your machine, do this
 (assuming a linux-like machine):
 <pre>
 	$ cd
-	$ wget http://spinroot.com/spin/Src/spin640.tar.gz
-	$ tar -xzvf spin640.tar.gz
-	$ cd Spin/Src6.4.0
+	$ wget http://spinroot.com/spin/Src/spin648.tar.gz
+	$ tar -xzvf spin648.tar.gz
+	$ cd Spin/Src6.4.8
 	$ make
 	$ cp spin /usr/local/bin	# on a Mac: cp spin /usr/bin
 	$ cd ../Examples/Exercises
 	$ spin -V	# make sure it's there
-	Spin Version 6.4.0 -- 19 September 2014
+	Spin Version 6.4.8 -- 19 January 2018
 </pre>
 
 <h2><tt><font color=blue>1.</font> Evaluating Search Complexity</tt></h2>
@@ -47,22 +47,23 @@ If Spin is not yet installed on your machine, do this
 This first set of exercises is meant to give an indication of
 the nature of the state space explosion phenomenon,
 and how <i>Spin</i> deals with it.
-It consists of small problems that can be solved with <i>Spin</i>.
-At each step, it is best to first try to determine what
+It consists of a set of small problems that can be solved with <i>Spin</i>.
+At each step, first try to determine what
 should happen, write down your prediction, and only then
-perform the experiment with Spin, and explain the result.
-(Especially if it differs from what you thought would happen.)
+perform the experiment with <i>Spin</i>, and explain the result
+if it differs from what you thought would happen.
+<br>
 Answer each of the questions marked <b><font color=blue>a)</font></b> ...
-<b><font color=blue>k)</font></b>, spending as much as you need to
+<b><font color=blue>k)</font></b>, spending as much time as you need to
 understand what really happens.
 <p>
 <b><font color=blue>a)</font></b> How many reachable states do you predict will the
-following small <i>Promela</i> model generate?
+following small <i>ProMeLa</i> model generate?
 <pre>
 	init {	// file: ex_1a.pml
 		byte i	// initialized to 0 by default
 		do	// loop forever
-		:: i++	// a C-ism for i = i + 1
+		:: i++	// short for i = i + 1
 		od
 	}
 </pre>
@@ -88,7 +89,7 @@ on the 255-th increment (in step 511).
 Would the simulation terminate if you didn't limit the number of steps?
 <br>
 <b><font color=blue>c)</font></b>
-The model allows for an infinite number of increments of variable i.
+The model allows for an infinite number of increments of variable <i>i</i>.
 Is this still a finite state model?
 <p>
 	<div class="boxed">
@@ -100,20 +101,22 @@ Is this still a finite state model?
 	performance is important, Spin optimizes the statemachines
 	a bit more, and it gets rid of that second step again.
 	You can see the optimized state machine that Spin generates by executing:
-	<pre>	$ spin -search -dump ex_1a.pml</pre>
+	<pre>	$ spin -run -dump ex_1a.pml</pre>
+	or just
+	<pre>	$ spin -run -d ex_1a.pml</pre>
 	</div>
 
 <b><font color=blue>d)</font></b>
 Estimate the number of reachable states for this model.
 Is it finite?
-Will a verification run terminate?
+Will a <i>verification</i> run terminate?
 Try it as follows.
 <pre>
-	$ spin -search ex_1a.pml	# equivalently: spin -run ex_1a.pml
+	$ spin -run ex_1a.pml
 </pre>
 Explain the output and the number of states that is reported.
 	<div class="boxed">
-	The <tt>-search</tt> argument is a shorthand in
+	The <tt>-run</tt> argument is a shorthand in
 	Spin version 6.4 for a series of steps to perform a formal
 	verification, that you <i>can</i> also execute one by one
 	(but would only do in exceptional cases):
@@ -121,10 +124,10 @@ Explain the output and the number of states that is reported.
 	$ spin -a ex_1a.pml # generate a C verifier for the model in pan.c
 	$ cc -o pan pan.c   # compile it
 	$ ./pan             # execute it</pre>
-	Spin's <tt>-search</tt> argument separates arguments processed
+	Spin's <tt>-run</tt> argument separates arguments processed
 	by Spin in interpreting the model itself (these would go <i>before</i> the
-	<tt>-search</tt> argument) and arguments that are used to compile and run the
-	verifier (these would go <i>after</i> the <tt>-search</tt> argument).
+	<tt>-run</tt> argument) and arguments that are used to compile and run the
+	verifier (these would go <i>after</i> the <tt>-run</tt> argument).
 	In our example we needed no additional arguments of either type.<p>
 	</div>
 <p>
@@ -167,7 +170,7 @@ are for the following system, and write them down as a reachability tree.
 	have the value 2, unless you define a different value on
 	the command line when you invoke Spin. For instance, you can
 	define N to be 4 by executing:
-	<pre>	$ spin -DN=4 -m -search ex_1f.pml</pre>
+	<pre>	$ spin -DN=4 -m -run ex_1f.pml</pre>
 	</div>
 You can check your prediction as follows.
 We're only interested in the size of the state space,
@@ -176,7 +179,7 @@ so we use the  <tt>-m</tt>
 option to define that the sender of a message never blocks.
 (Messages sent to a full channel are then lost.)
 <pre>
-	$ spin -m -search ex_1f.pml	# use -m to ignore buffer overflow
+	$ spin -m -run ex_1f.pml	# use -m to ignore buffer overflow
 </pre>
 Explain the result.
 	<div class="boxed">
@@ -210,9 +213,9 @@ Express the number of states as a function of N.
 Use your formula to calculate how many states there
 will be if you set N to 14 ?
 Check your prediction as follows.
-<pre>	$ spin -DN=14 -m -search ex_1f.pml</pre>
+<pre>	$ spin -DN=14 -m -run ex_1f.pml</pre>
 Set N to 20 and repeat the run.
-<pre>	$ spin -DN=20 -m -search ex_1f.pml</pre>
+<pre>	$ spin -DN=20 -m -run ex_1f.pml</pre>
 <p>
 Consider the following metrics on this verification run:
 <pre>
@@ -257,11 +260,11 @@ states. To study the effect of the hash-table size on performance,
 repeat the last verification run with a very small hash table,
 for instance as follows:
 <pre>
-	$ spin -DN=20 -m -search -w12 ex_1f.pml
+	$ spin -DN=20 -m -run -w12 ex_1f.pml
 </pre>
 	<div class="boxed">
 	Note: runtime parameter <tt>-w12</tt> goes <i>after</i>
-	the <tt>-search</tt> option, and the other parameters for parsing
+	the <tt>-run</tt> option, and the other parameters for parsing
 	the model itself go <i>before</i> it.<p>
 	</div>
 Explain the results.
@@ -295,7 +298,7 @@ To find out the real number, try it as follows.
 In this command we limit the search to 16 MB plus a 1 MB margin,
 and we use a small hashtable size (<tt>-w15</tt>:
 <pre>
-	$ spin -DN=24 -m -search -DMEMLIM=17 -w15 ex_1f.pml
+	$ spin -DN=24 -m -run -DMEMLIM=17 -w15 ex_1f.pml
 </pre>
 	<div class="boxed">
 	We use a small setting for the hash-table <tt>-w15</tt>,
@@ -303,10 +306,10 @@ and we use a small hashtable size (<tt>-w15</tt>:
 	memory requirements. The default size of the hash-table
 	would exceed the memory limit we are imposing here.
 	<br>
-	All arguments that <i>follow</i> a <tt>-search</tt>
+	All arguments that <i>follow</i> a <tt>-run</tt>
 	argument are passed by Spin to either the compiler
 	or the runtime verifier. In this case we used both types of
-	pass-thru options. All arguments that <i>preceed</i> the <tt>-search</tt>
+	pass-thru options. All arguments that <i>preceed</i> the <tt>-run</tt>
 	argument are processed by Spin itself as before.<p>
 	</div>
 <br>
@@ -321,7 +324,7 @@ without increasing the amount of memory.
 <br>
 Perform a bitstate search with Spin, as follows.
 <pre>
-	$ spin -DN=24 -m -search -DMEMLIM=17 -bitstate ex_1f.pml
+	$ spin -DN=24 -m -run -DMEMLIM=17 -bitstate ex_1f.pml
 </pre>
 The default argument for <tt>-w</tt> gives us precisely the right
 size of the hash-array of 16 MB here. (The default is <tt>-w27</tt>).
@@ -365,7 +368,7 @@ maximum number of states that can be recorded in the bitstate hash-array.
 Repeat the run without the memory bound, and enable
 some compiler optimization while you're at it, as follows:
 <pre>
-	$ spin -DN=24 -m -search -O2 -bitstate -w29 ex_1f.pml
+	$ spin -DN=24 -m -run -O2 -bitstate -w29 ex_1f.pml
 </pre>
 and perform some additional runs with different sizes of the
 bitstate array (different from the default of <tt>-w27</tt>).
@@ -399,7 +402,7 @@ information reliably over noisy telephone lines with low-speed
 </center>
 <p>
 
-A <i>Promela</i> version of this protocol is shown below.
+A (partial) <i>Promela</i> version of this protocol is shown below.
 <p>
 State S1 is the initial state in process A and
 state S2 is the initial state in process B.
@@ -433,7 +436,7 @@ state S2 is the initial state in process B.
  27 	fi
  28 S3:	b2a!b0 -> goto S2
  29 S4:	a2b?_  -> goto S1
- 30 S5:	a2b!b0 -> goto S4
+ 30 S5:	b2a!b0 -> goto S4
  31 }
 </pre>
 <b><font color=blue>a)</font></b>
@@ -536,7 +539,7 @@ You do not need to, and should not, consider out of order executions.
 	<div class="boxed">
 	If you get stuck, take a look at a sample solution in file
 	ex_3a.pml -- and analyze it as follows:
-	<pre>	$ spin -search ex_3a.pml
+	<pre>	$ spin -run ex_3a.pml
 	$ spin -p -replay ex_3a.pml</pre>
 	In this sample solution an LTL property is used to verify
 	the algorithm. You can also verify this simple safety
@@ -633,7 +636,7 @@ violation by studying the algorithm.
 Next generate the counter-example with <i>Spin</i>.
 	<div class="boxed">
 	Assuming that you easily generated a counter-example
-	(<tt>spin -search ex_3c.pml</tt> will do it), the next question
+	(<tt>spin -run ex_3c.pml</tt> will do it), the next question
 	you'll have is how to inspect it. You'll need the Spin flag <tt>-replay</tt>
 	for this. The <tt>-replay</tt> argument tells spin to look for a
 	counter-example trail that is store in a file with the same
@@ -651,21 +654,21 @@ Next generate the counter-example with <i>Spin</i>.
 	to be. To get a shorter trail, you can try running the verification
 	with an iterative shortening option <tt>-i</tt>. For instance
 	<pre>
-	$ spin -search -i ex_3c.pml		# add runtime parameter -i
+	$ spin -run -i ex_3c.pml		# add runtime parameter -i
 	$ spin -p -replay ex_3c.pml</pre>	# -p goes before -replay
 	This is still not the shortest possible trail. To get that,
 	you can recompile Spin to force it to search for the shortest
 	possible counter-example. For instance by using a breadth-first,
 	instead of the default depth-first search, as follows:
 	<pre>
-	$ spin -search -bfs ex_3c.pml		# use breadth-first search
+	$ spin -run -bfs ex_3c.pml		# use breadth-first search
 	$ spin -p -replay ex_3c.pml</pre>
 	You can also get the shortest counter-example with the default
 	depth-first search, but now you have to tell the verifier to
 	remember the length of execution sequences (which uses more
 	memory) and use the iterative shortening method:
 	<pre>
-	$ spin -search -i ex_3c.pml	# modified depth-first with shortening
+	$ spin -run -i ex_3c.pml	# modified depth-first with shortening
 	$ spin -p -replay ex_3c.pml</pre>
 	</div>
 
@@ -780,7 +783,7 @@ to remove the problem.
 	find non-progress cycles (infinite executions that fail to include
 	at least one state labeled with a progress tag), we need to pass
 	an different run argument to Spin. Like this:
-	<pre>	$ spin -search -l -f ex_5.pml</pre>
+	<pre>	$ spin -run -l -f ex_5.pml</pre>
 	Which, if an error is reported, can be followed with the replay command:
 	<pre>
 	$ spin -p -replay ex_5.pml</pre>
@@ -916,7 +919,7 @@ to facilitate the interpretation of simulation trails.
 	to indicate key steps in their execution.
 	To verify the model for safety properties (assertion violations
 	or reachable invalid end-states) we can say:
-	<pre>	$ spin -search ex_6.pml</pre>
+	<pre>	$ spin -run ex_6.pml</pre>
 	The verifier will then warn us about a problem:
 	<pre>	error: max search depth too small</pre>
 	The error notice says that the default search depth was not sufficient
@@ -928,7 +931,7 @@ to facilitate the interpretation of simulation trails.
 	We can do so by using the compilation directive <tt>-noclaim</tt>.
 	This leads to the following command line:
 	<pre>
-	$ spin -search -O2 -noclaim -m100000 ex_6.pml</pre>
+	$ spin -run -O2 -noclaim -m100000 ex_6.pml</pre>
 	This gives us a first impression of the complexity of the search,
 	which is still quite manageable, but requires a fair amount of memory.<p>
 	</div>
@@ -957,9 +960,9 @@ and the red message cannot be lost.
 	disable it with the <b>-noclaim</b> parameter. There's also
 	only one LTL property in this case -- if there was more than
 	one you'd have to choose the one to use in the verification,
-	for instance as: <tt>spin -O2 -search -ltl p1 -m100000 ex_6.pml</tt> .
+	for instance as: <tt>spin -O2 -run -ltl p1 -m100000 ex_6.pml</tt> .
 	<pre>
-	$ spin -search -O2 -m100000 ex_6.pml # leave the LTL property enabled</pre>
+	$ spin -run -O2 -m100000 ex_6.pml # leave the LTL property enabled</pre>
 	Notice that the search completes faster than before,
 	requiring a smaller statespace to be explored, because we limited
 	the verification to the specific problem of finding a counter-example
@@ -1042,7 +1045,7 @@ St. Petersburg Beach, Fla., January 1986, pp. 148-193.
 </td>
 <td valign=top width=100 align=center></td>
 <td valign=top width=400 align=right>
-<font size="3"><b><tt>(Page Updated: 19 September 2014)</tt></font></b></td></tr>
+<font size="3"><b><tt>(Page Updated: 15 January 2018)</tt></font></b></td></tr>
 </table>
 
 </td><td width=15%> </td></tr></table>
