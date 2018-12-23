@@ -27,7 +27,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  DESTDIR?=/usr/local/bin
  INSTALL?=cp		# on linux: install -c
  
-@@ -36,7 +36,7 @@
+@@ -36,11 +36,10 @@
  	tl_mem.o tl_rewrt.o tl_cache.o
  
  spin:	$(SPIN_OS) $(TL_OS) spin.o
@@ -36,3 +36,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
  install: spin
  	$(INSTALL) spin $(DESTDIR)
+-	$(INSTALL) ../Man/spin.1 /usr/local/man/man1
+ 
+ spin.o:	spin.y
+ 	$(YACC) $(YFLAGS) spin.y
