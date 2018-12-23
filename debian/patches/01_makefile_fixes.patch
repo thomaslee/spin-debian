@@ -7,21 +7,10 @@ Forwarded: no
 Last-Update: 2016-03-30
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/Src6.4.6/makefile
-+++ b/Src6.4.6/makefile
-@@ -7,8 +7,8 @@
- # see also ./make_pc for a simpler script not requiring make
- # for 32-bit compilation, use ./make32
- 
--CC=gcc
--CFLAGS=-O2 -DNXT	# on some systems add: -I/usr/include
-+CC?=gcc
-+CFLAGS+=-O2 -DNXT	# on some systems add: -I/usr/include
- 			# on a PC:    add -DPC
- 			# on Solaris: add -DSOLARIS
- 			# on a Mac:   add -DMAC
-@@ -17,7 +17,7 @@
- # CFLAGS=-pg -g -DNXT
+--- a/Src6.4.9/makefile
++++ b/Src6.4.9/makefile
+@@ -14,7 +14,7 @@
+ 	# debugging:  make CFLAGS=-pg -g -DNXT
  
  # for a more picky compilation use gcc-4 and add:
 -PICKY=-std=c99 -Wstrict-prototypes -pedantic -fno-strength-reduce \
@@ -29,18 +18,16 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  	-fno-builtin -W -Wshadow -Wpointer-arith \
  	-Wcast-qual -Winline -Wall
  
-@@ -25,8 +25,8 @@
- 			# on OS2:         spin -Picc -E/Pd+ -E/Q+
+@@ -23,7 +23,7 @@
  			# for Visual C++: spin -PCL  -E/E
  
--YACC=yacc		# on Solaris: /usr/ccs/bin/yacc
+ YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
 -YFLAGS=-v -d 		# creates y.output and y.tab.h
-+YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
 +YFLAGS?=-v -d 		# creates y.output and y.tab.h
  DESTDIR?=/usr/local/bin
- INSTALL?=cp
+ INSTALL?=cp		# on linux: install -c
  
-@@ -39,7 +39,7 @@
+@@ -36,7 +36,7 @@
  	tl_mem.o tl_rewrt.o tl_cache.o
  
  spin:	$(SPIN_OS) $(TL_OS) spin.o
