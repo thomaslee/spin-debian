@@ -4,4 +4,4 @@ opts="dversionmangle=s/\+dfsg$//,\
       repacksuffix=+dfsg,\
       compression=xz,\
       repack" \
-      http://spinroot.com/spin/Src/index.html spin([0-9]{3})\.tar\.gz
+      https://spinroot.com/spin/Src/index.html spin([0-9]{3})\.tar\.gz

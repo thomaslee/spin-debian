@@ -1,0 +1,15 @@
+#!/bin/bash
+
+exec 2>&1
+
+test_spin_usage() {
+    local output="$(spin --bogus 2>&1 || true)"
+    if ! echo "$output" | grep -q 'use: spin'; then
+        fail "expected to find 'use: spin' in usage output"
+    fi
+}
+
+# TODO more tests here
+
+. shunit2
+

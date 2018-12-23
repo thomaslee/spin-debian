@@ -3,10 +3,10 @@ Section: devel
 Priority: optional
 Maintainer: Tom Lee <debian@tomlee.co>
 Uploaders: tony mancill <tmancill@debian.org>
-Build-Depends: debhelper (>=10), bison
-Standards-Version: 4.0.0
+Build-Depends: debhelper (>=11), bison
+Standards-Version: 4.2.1
 Homepage: http://spinroot.com
-Vcs-Git: git://github.com/thomaslee/spin-debian
+Vcs-Git: https://github.com/thomaslee/spin-debian
 Vcs-Browser: https://github.com/thomaslee/spin-debian
 
 Package: spin
@@ -24,4 +24,3 @@ Description: formal software verification tool
  keep pace with new developments.
  .
  In April 2002 the tool was awarded the ACM System Software Award.
-
