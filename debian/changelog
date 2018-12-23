@@ -1,3 +1,9 @@
+spin (6.4.9+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Tom Lee <debian@tomlee.co>  Sat, 22 Dec 2018 16:13:11 -0800
+
 spin (6.4.6+dfsg-2) unstable; urgency=medium
 
   * Upload upstream 6.4.6 to unstable
