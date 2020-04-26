@@ -1,0 +1,76 @@
+Description: Fix typos.
+ Various typos detected by lintian fixed here.
+Author: Tom Lee <debian@tomlee.co>
+Forwarded: no
+Last-Update: 2020-04-25
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/Src/pangen2.c
++++ b/Src/pangen2.c
+@@ -418,7 +418,7 @@
+ 	fprintf(fd_th, "#if !defined(HAS_LAST) && defined(BCS)\n");
+ 	fprintf(fd_th, "	#define HAS_LAST	1 /* use it, but */\n");
+ 	fprintf(fd_th, "	#ifndef STORE_LAST\n"); /* unless the user insists */
+-	fprintf(fd_th, "		#define NO_LAST	1 /* dont store it */\n");
++	fprintf(fd_th, "		#define NO_LAST	1 /* don't store it */\n");
+ 	fprintf(fd_th, "	#endif\n");
+ 	fprintf(fd_th, "#endif\n");
+ 
+@@ -3345,7 +3345,7 @@
+ 			{	/* attempt to catch arrays that are indexed with an array element in the same array
+ 				 * this causes trouble in the verifier in the backtracking
+ 				 * e.g., restoring a[?] in the assignment: a [a[1]] = x where a[1] == 1
+-				 * but it is hard when the array is inside a structure, so the names dont match
++				 * but it is hard when the array is inside a structure, so the names don't match
+ 				 */
+ #if 0
+ 				if (n->lft->ntyp == NAME)
+--- a/Src/pangen6.h
++++ b/Src/pangen6.h
+@@ -457,7 +457,7 @@
+ 	"	volatile sh_Allocater *nxt_pool;",
+ 	"	/*",
+ 	"	 * mark all shared memory segments for removal ",
+-	"	 * the actual removes wont happen intil last process dies or detaches",
++	"	 * the actual removes won't happen intil last process dies or detaches",
+ 	"	 * the shmctl calls can return -1 if not all procs have detached yet",
+ 	"	 */",
+ 	"	for (m = 0; m < NR_QS; m++)	/* +1 for global q */",
+@@ -1598,7 +1598,7 @@
+ 	"		{	if (m_workq[NCORE][*grfree].m_vsize != 0)",
+ 	"			{	/* can happen if reader is slow emptying slot */",
+ 	"				*gr_readmiss++;",
+-	"				goto out; /* dont wait: release lock and return */",
++	"				goto out; /* don't wait: release lock and return */",
+ 	"			}",
+ 	"			lrfree = *grfree;	/* Get_Free_Frame use lrfree in this mode */",
+ 	"			*grfree = (*grfree + 1) %% GN_FRAMES;",	/* next process looks at next slot */
+@@ -1607,7 +1607,7 @@
+ 	"			leave_critical(GQ_WR);	/* for short lock duration */",
+ 	"			gq_hasroom++;",
+ 	"			mem_put(NCORE);		/* copy state into reserved slot */",
+-	"			rval = 1;		/* successfull handoff */",
++	"			rval = 1;		/* successful handoff */",
+ 	"		} else",
+ 	"		{	gq_hasnoroom++;",
+ 	"out:			leave_critical(GQ_WR);",	/* should be rare */
+--- a/Src/pangen7.h
++++ b/Src/pangen7.h
+@@ -1386,7 +1386,7 @@
+ 	"	#endif",
+ 	"	#ifdef BFS_DISK",
+ 	"		/* the states actually show up in reverse order (FIFO iso LIFO) here */",
+-	"		/* but that doesnt really matter as long as the count is right */",
++	"		/* but that doesn't really matter as long as the count is right */",
+ 	"		bfs_source_disk(bfs_inp_fd[bfs_qscan], n); /* get the data */",
+ 	"	#endif",
+ 
+@@ -2021,7 +2021,7 @@
+ 	"",
+ 	"	s = &shared_memory->bfs_data[who_am_i];",
+ 	"	if (who_am_i == 0)",
+-	"	{	shared_memory->bfs_flag[who_am_i] = 3; /* or else others dont stop */",
++	"	{	shared_memory->bfs_flag[who_am_i] = 3; /* or else others don't stop */",
+ 	"		bfs_gcount = 0;",
+ 	"		for (i = 1; i < Cores; i++) /* start at 1 not 0 */",
+ 	"		{	while (shared_memory->bfs_flag[i] == 0)",
