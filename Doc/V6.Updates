@@ -12,7 +12,7 @@ The update history since 1989:
  Version 4: Jan. 2003 - Oct. 2007 28.2K lines: embedded c-code, bfs
  Version 5: Oct. 2007 - Dec. 2010 32.8K lines: multi-core & swarm support
  Version 6: Dec. 2010 -           36.8K lines: inline ltl formula, parallel bfs
- Version 6.4.9:  2018 -           40.1K lines
+ Version 6.5.0:  2019 -           40.1K lines
 
 ==== Version 6.0.0 - 5 December 2010 ====
 
@@ -904,3 +904,36 @@ Smaller changes:
 - improved treatment of missing semi-colons slightly
 - corrected an (unlikely) initialization problem for local variables in inlines
 
+
+==== Version 6.5.0 -- 1 July 2019 ====
+
+- source code distribution of Spin and a couple of related tools
+  moved to GitHub (www.github.com/nimble-code)
+- the lgtm scans of the Spin sources on github prompted some more
+  code cleanup efforts, to get closer to a squeaky clean scan.
+  some of the lgtm/semmle alerts are cosmetic, e.g., warning
+  about short global variable names like 'run' or 'rdy'. in
+  6.5.0 many of these are replaced with longer names. these small
+  cosmetic changes have touched many files.
+- some further standardazation of the makefile (courtesy Tom Lee)
+- you can now install spin on Debian/Ubuntu systems with a straight
+  apt-get update; apt-get install spin (also courtesy Tom Lee)
+- update to make it possible to convert arbitrary length ltl formula
+  (i.e., long texts of the formula -- but complex formula could of course
+  still require too much computation to convert efficiently)
+- better use of quotes in preprocessing command
+- corrected scope issue found by coverity
+- increased sizes of some buffers to avoid overflow
+- removed a check that prevented mtype definitions on structure elements
+- removed unused variables and unused labels
+- made the count for errors an insigned long, instead of signed int
+- moved a few more extern declarations to the top of each file
+
+==== Version 6.5.1 -- 3 December 2019 ====
+
+- small updates to prevent warnings from static analyzers, e.g.
+  of format specifiers in print statements
+- corrected bug reported by Hakan Erdogmus and Zmago Brezocnik
+  in the simulation output, introduced in version 6.4.8 - fixed in
+  mesg.c line 327 where a wrong parameter was passed. this
+  caused lines printed to be truncated in some cases
