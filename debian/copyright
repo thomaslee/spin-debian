@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: spin
 Source: http://spinroot.com/spin/Src/index.html
-Files-Excluded: iSpin/*
+Files-Excluded: optional_gui/*
 
 Files: *
 Copyright: 1989-2016 Gerard J. Holzmann
