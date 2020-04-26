@@ -4,11 +4,11 @@ Description: Makefile fixes
  some minor edits to permit the package to play nice with debhelper et al.
 Author: Tom Lee <debian@tomlee.co>
 Forwarded: no
-Last-Update: 2016-03-30
+Last-Update: 2020-04-25
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/Src6.4.9/makefile
-+++ b/Src6.4.9/makefile
+--- a/Src/makefile
++++ b/Src/makefile
 @@ -14,7 +14,7 @@
  	# debugging:  make CFLAGS=-pg -g -DNXT
  
@@ -24,19 +24,6 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  YACC?=yacc		# on Solaris: /usr/ccs/bin/yacc
 -YFLAGS=-v -d 		# creates y.output and y.tab.h
 +YFLAGS?=-v -d 		# creates y.output and y.tab.h
- DESTDIR?=/usr/local/bin
- INSTALL?=cp		# on linux: install -c
+ DESTDIR?=/usr/local
+ INSTALL?=cp		# on linux: install -D
  
-@@ -36,11 +36,10 @@
- 	tl_mem.o tl_rewrt.o tl_cache.o
- 
- spin:	$(SPIN_OS) $(TL_OS) spin.o
--	$(CC) $(CFLAGS) -o spin spin.o $(SPIN_OS) $(TL_OS)
-+	$(CC) $(CFLAGS) -o spin spin.o $(LDFLAGS) $(SPIN_OS) $(TL_OS)
- 
- install: spin
- 	$(INSTALL) spin $(DESTDIR)
--	$(INSTALL) ../Man/spin.1 /usr/local/man/man1
- 
- spin.o:	spin.y
- 	$(YACC) $(YFLAGS) spin.y

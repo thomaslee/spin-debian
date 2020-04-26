@@ -21,7 +21,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -94,7 +93,7 @@
  .br
  This option reads a formula in LTL syntax from the second argument
- and translates it into Promela syntax (a never claim, qhich is Promela's
+ and translates it into Promela syntax (a never claim, which is Promela's
 -equivalent of a B\(u"chi Automaton).
 +equivalent of a Büchi Automaton).
  The LTL operators are written: [] (always), <> (eventually),
