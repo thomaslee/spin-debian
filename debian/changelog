@@ -1,3 +1,13 @@
+spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release 6.5.2
+  * Bump Standards-Version to 4.5.0
+  * debian-compat 12
+  * Fix various build and lintian issues
+  * Exclude binaries and docs of questionable origin for now
+
+ -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
+
 spin (6.4.9+dfsg-1) unstable; urgency=medium
 
   * New upstream release
