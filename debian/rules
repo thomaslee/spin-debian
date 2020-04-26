@@ -9,6 +9,7 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 
 override_dh_auto_install:
-	dh_auto_install
-	mkdir -p $(CURDIR)/debian/spin/usr/bin
-	mv $(CURDIR)/debian/spin/spin $(CURDIR)/debian/spin/usr/bin/spin
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/spin/usr INSTALL="install -sD --strip-program=true"
+
+override_dh_fixperms:
+	dh_fixperms
