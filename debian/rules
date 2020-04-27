@@ -4,12 +4,17 @@ export DH_VERBOSE = 1
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
+# for getline
+export DEB_CFLAGS_MAINT_APPEND = -D_GNU_SOURCE
+
 %:
 	dh $@ --sourcedirectory=Src
 
 
 override_dh_auto_install:
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/spin/usr INSTALL="install -sD --strip-program=true"
+	$(MAKE) install \
+		DESTDIR=$(CURDIR)/debian/spin/usr \
+		INSTALL="install -sD --strip-program=true"
 
 override_dh_fixperms:
 	dh_fixperms
