@@ -4,11 +4,24 @@ export DH_VERBOSE = 1
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
+# for getline
+export DEB_CFLAGS_MAINT_APPEND = -D_GNU_SOURCE
+
 %:
-	dh $@ --sourcedirectory=Src6.4.9
+	dh $@ --sourcedirectory=Src
 
 
 override_dh_auto_install:
-	dh_auto_install
-	mkdir -p $(CURDIR)/debian/spin/usr/bin
-	mv $(CURDIR)/debian/spin/spin $(CURDIR)/debian/spin/usr/bin/spin
+	$(MAKE) install \
+		DESTDIR=$(CURDIR)/debian/spin/usr \
+		INSTALL="install -sD --strip-program=true"
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/Book_1991/*.h
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/Book_1991/*.txt
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/Book_1991/*.pml
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/Exercises/*.pml
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/LTL/*.pml
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/*.pml
+	chmod ugo-x $(CURDIR)/debian/spin/usr/share/doc/spin/examples/Examples/*.txt

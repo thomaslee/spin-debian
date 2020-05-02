@@ -1,7 +1,7 @@
 version=4
 opts="dversionmangle=s/\+dfsg$//,\
-      uversionmangle=s/^([0-9])([0-9])([0-9])$/$1.$2.$3/,\
+      filenamemangle=s%.*version-(\d[\d.]*)\.tar\.gz%spin-$1.tar.gz%, \
       repacksuffix=+dfsg,\
       compression=xz,\
       repack" \
-      https://spinroot.com/spin/Src/index.html spin([0-9]{3})\.tar\.gz
+      https://github.com/nimble-code/Spin/tags .*/version-([0-9]+\.[0-9]+\.[0-9]+)\.tar\.gz
