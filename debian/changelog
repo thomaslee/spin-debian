@@ -1,11 +1,15 @@
 spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
 
+  [ Tom Lee ]
   * New upstream release 6.5.2
   * Bump Standards-Version to 4.5.0
   * debian-compat 12
   * Fix various build and lintian issues
   * Exclude binaries under Bin/ in upstream tarball during repack
   * Also exclude book errata under Docs/ until copyright can be determined
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
