@@ -12,6 +12,7 @@ spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
   * Use secure URI in Homepage field.
   * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
     Repository-Browse.
+  * Use canonical URL in Vcs-Git.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
