@@ -14,6 +14,7 @@ spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
     + spin: Drop versioned constraint on staden in Breaks.
   * Update lintian override info format in d/spin.lintian-overrides on line 1.
   * Bump debhelper from old 12 to 13.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository-Browse.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
