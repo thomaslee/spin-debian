@@ -16,6 +16,7 @@ spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
   * Bump debhelper from old 12 to 13.
   * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository-Browse.
   * Use canonical URL in Vcs-Git.
+  * Update standards version to 4.6.2, no changes needed.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
