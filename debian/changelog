@@ -12,6 +12,7 @@ spin (6.5.2+dfsg-1) UNRELEASED; urgency=medium
   * Remove constraints unnecessary since stretch:
     + spin: Drop versioned constraint on staden in Replaces.
     + spin: Drop versioned constraint on staden in Breaks.
+  * Update lintian override info format in d/spin.lintian-overrides on line 1.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
