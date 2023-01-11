@@ -3,11 +3,11 @@ Section: devel
 Priority: optional
 Maintainer: Tom Lee <debian@tomlee.co>
 Uploaders: tony mancill <tmancill@debian.org>
-Build-Depends: debhelper-compat (= 12), bison
-Standards-Version: 4.5.0
+Build-Depends: debhelper-compat (= 13), bison
+Standards-Version: 4.6.2
 Rules-Requires-Root: no
 Homepage: http://spinroot.com
-Vcs-Git: https://github.com/thomaslee/spin-debian
+Vcs-Git: https://github.com/thomaslee/spin-debian.git
 Vcs-Browser: https://github.com/thomaslee/spin-debian
 
 Package: spin
