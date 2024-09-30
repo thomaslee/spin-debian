@@ -13,8 +13,6 @@ Vcs-Browser: https://github.com/thomaslee/spin-debian
 Package: spin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Breaks: staden (<< 2.0.0+b11)
-Replaces: staden (<< 2.0.0+b11)
 Description: formal software verification tool
  Spin is a popular open-source software verification tool, used by thousands
  of people worldwide. The tool can be used for the formal verification of
