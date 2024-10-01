@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: spin
-Source: http://spinroot.com/spin/Src/index.html
+Source: https://github.com/nimble-code/Spin
 Files-Excluded: optional_gui/* Bin/* Doc/Book1991_* Doc/Book2003_*
 
 Files: *
@@ -13,8 +13,8 @@ Comment: See Src6.4.6/LICENSE for more information about the provenance
  BSD-3-clause license.
 
 Files: debian/*
-Copyright: 2016 Tom Lee <debian@tomlee.co>
-           2017 tony mancill <tmancill@debian.org>
+Copyright: 2016-2024 Tom Lee <debian@tomlee.co>
+           2017-2024 tony mancill <tmancill@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause
