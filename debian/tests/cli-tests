@@ -9,6 +9,12 @@ test_spin_usage() {
     fi
 }
 
+test_nxt() {
+    if ! spin -f 'X a' >/dev/null 2>&1; then
+        fail "compiled without -DNXT"
+    fi
+}
+
 # TODO more tests here
 
 . shunit2
