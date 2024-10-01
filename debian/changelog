@@ -1,3 +1,21 @@
+spin (6.5.2+dfsg-2) unstable; urgency=medium
+
+  [ Tom Lee ]
+  * Compile with -DNXT (next operator) (Closes: #1082739)
+    Thank you to Alexandre Duret-Lutz for the bug report.
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since stretch:
+    + spin: Drop versioned constraint on staden in Replaces.
+    + spin: Drop versioned constraint on staden in Breaks.
+
+  [ tony mancill ]
+  * Bump Standards-Version to 4.7.0
+  * Update Homepage URL to https
+  * Freshen debian/copyright
+
+ -- tony mancill <tmancill@debian.org>  Mon, 30 Sep 2024 21:56:31 -0700
+
 spin (6.5.2+dfsg-1) unstable; urgency=medium
 
   [ Tom Lee ]
@@ -7,11 +25,6 @@ spin (6.5.2+dfsg-1) unstable; urgency=medium
   * Fix various build and lintian issues
   * Exclude binaries under Bin/ in upstream tarball during repack
   * Also exclude book errata under Docs/ until copyright can be determined
-
-  [ Debian Janitor ]
-  * Remove constraints unnecessary since stretch:
-    + spin: Drop versioned constraint on staden in Replaces.
-    + spin: Drop versioned constraint on staden in Breaks.
 
  -- Tom Lee <debian@tomlee.co>  Sat, 25 Apr 2020 20:50:11 -0700
 
